@@ -1,4 +1,6 @@
-# replace .phpp with .php in wp-settings.php
-exec { 'fix wordpress':
-  command     => "/bin/sed -i 's/phpp/php/g' /var/www/html/wp-settings.php",
+# Fix 500 error when a GET HTTP method is requested to Apache web server
+
+exec {'replace':
+  provider => shell,
+  command  => 'sed -i "s/phpp/php/g" /var/www/html/wp-settings.php'
 }
